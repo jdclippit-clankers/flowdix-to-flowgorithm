@@ -20,7 +20,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Inter", "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Google Sans Flex", "Inter", "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
   background: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
 }
@@ -217,5 +217,5 @@ md-filled-button[disabled] {
   .circle { width: 48px; height: 48px; }
   md-filled-button { --md-container-height: 32px; border-radius: 16px; }
 }
-.warn summary { display: flex; justify-content: space-between; align-items: center; width: 100%; } .warn summary::after { content: '&#9654;'; font-size: 0.75rem; transition: transform 0.3s ease; } .warn[open] summary::after { transform: rotate(90deg); }
+.warn summary { display: flex; justify-content: space-between; align-items: center; width: 100%; } .warn summary::after { content: '\25B6'; font-size: 0.75rem; transition: transform 0.3s ease; } .warn[open] summary::after { transform: rotate(90deg); }
 .material-symbols-rounded { font-family: 'Material Symbols Rounded'; font-weight: 400; font-style: normal; font-size: 24px; display: inline-block; line-height: 1; letter-spacing: normal; text-transform: none; direction: ltr; }
