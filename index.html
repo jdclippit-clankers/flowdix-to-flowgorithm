@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FlowDIX → Flowgorithm</title>
+<link rel="stylesheet" href="style.css" />
+<script type="module" src="https://esm.run/@material/web/all.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+  <header>
+    <h1>FlowDIX → Flowgorithm</h1>
+    <p>Drop a <code>.fdxn</code> file to convert to <code>.fprg</code></p>
+  </header>
+  <main>
+    <section class="panel">
+      <div id="dropzone" class="dropzone">
+        <div class="circle"><span class="material-symbols-rounded">cloud_upload</span></div>
+        <span>Click or drop a .fdxn file here</span>
+      </div>
+      <div class="row">
+        <md-filled-button id="download" disabled>Download .fprg</md-filled-button>
+      </div>
+      <details class="warn" id="warnbox">
+        <summary>Warning</summary>
+        <p>Unsupported: foreach, do (do-while), return statements, globalVariable, matrix, matrixElement, multi-dim arrays, settings (palette/language). Dropped or left as comments. Review output carefully.</p>
+      </details>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
