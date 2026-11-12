@@ -3,6 +3,7 @@ const dropzone = document.getElementById('dropzone');
 
 let lastXml = '';
 let loadedName = 'converted';
+downloadBtn.disabled = true;
 
 const hiddenInput = document.createElement('input');
 hiddenInput.type = 'file';
@@ -21,7 +22,8 @@ function handleFile(f) {
     downloadBtn.disabled = false;
     dropzone.classList.remove("uploading");
     loadedName = f.name.replace(/\.fdxn$/i, '');
-    dropzone.innerHTML = '<div class="circle"><span class="material-symbols-rounded">insert_drive_file</span></div><span>' + f.name + '</span>';
+    dropzone.innerHTML = '<div class="circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/></svg></div><span>' + f.name + '</span>';
+    downloadNow();
   };
   r.readAsText(f);
 }
@@ -50,7 +52,7 @@ function convertNode(node, indent) {
     case 'end':
       return '';
     case 'declare': {
-      const m = String(node.variableName).match(/^(.*)\\[(\\d+)\\]$/);
+      const m = String(node.variableName).match(/^(.*)\[(\d+)\]$/);
       if (m) {
         return `${I}<declare name="${esc(m[1])}" type="${esc(node.variableType)}" array="True" size="${m[2]}"/>\n`;
       }
@@ -137,11 +139,14 @@ function convertData(data) {
   return xml;
 }
 
-downloadBtn.addEventListener('click', () => {
+function downloadNow() {
+  if (!lastXml) return;
   const blob = new Blob([lastXml], { type: 'application/xml' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = loadedName + '.fprg';
   a.click();
   URL.revokeObjectURL(url);
-});
+}
+
+downloadBtn.addEventListener('click', downloadNow);

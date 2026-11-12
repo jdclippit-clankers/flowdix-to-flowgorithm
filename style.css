@@ -30,8 +30,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 1rem;
+  min-height: 100dvh;
+  padding: 0;
+  overflow-x: hidden;
+}
+html {
+  overflow-x: hidden;
 }
 
 header {
@@ -152,13 +156,27 @@ main {
 }
 
 md-filled-button {
-  --md-container-height: 36px;
-  border-radius: 20px;
-  font-weight: 500;
+  --md-container-height: 40px;
+  border-radius: 22px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+md-filled-button:not([disabled]):hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.16);
+}
+
+md-filled-button:not([disabled]):active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
 }
 
 md-filled-button[disabled] {
-  opacity: 0.5;
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .warn {
@@ -177,10 +195,23 @@ md-filled-button[disabled] {
   font-weight: 600;
   cursor: pointer;
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.warn summary::-webkit-details-marker { display: none; }
-.warn summary::marker { content: ""; }
+.warn summary::after {
+  content: '▶';
+  font-size: 0.65rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.warn[open] summary::after {
+  transform: rotate(90deg);
+}
 
 .warn > p {
   max-height: 0;
@@ -217,5 +248,3 @@ md-filled-button[disabled] {
   .circle { width: 48px; height: 48px; }
   md-filled-button { --md-container-height: 32px; border-radius: 16px; }
 }
-.warn summary { display: flex; justify-content: space-between; align-items: center; width: 100%; } .warn summary::after { content: '\25B6'; font-size: 0.75rem; transition: transform 0.3s ease; } .warn[open] summary::after { transform: rotate(90deg); }
-.material-symbols-rounded { font-family: 'Material Symbols Rounded'; font-weight: 400; font-style: normal; font-size: 24px; display: inline-block; line-height: 1; letter-spacing: normal; text-transform: none; direction: ltr; }
